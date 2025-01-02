@@ -1,0 +1,91 @@
+<div class="relative overflow-x-hidden max-w-screen-lg mx-auto mt-10">
+  <div class="flex flex-row justify-between items-center pr-5">
+    <h1 class="font-bold text-3xl mb-10">Star Wars Characters</h1>
+    <form class="flex justify-end items-center max-w-sm">
+      <label for="simple-search" class="sr-only">Search</label>
+      <div class="relative w-full">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people"
+            viewBox="0 0 16 16">
+            <path
+              d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
+          </svg>
+        </div>
+        <input #search type="text" id="simple-search"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Search Character..." required />
+      </div>
+      <button (click)="onSubmit(search.value); search.value = ''" type="button"
+        class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+        </svg>
+        <span class="sr-only">Search</span>
+      </button>
+    </form>
+  </div>
+
+<div  *ngIf="people.length > 0">
+  <table
+    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-yellow-50">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-yellow-50">
+      <tr>
+        <th scope="col" class="px-6 py-3">
+          Name
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Birth Year
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Homeworld
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Terrain
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" *ngFor="let person of people">
+        <td class="px-6 py-4">
+          {{ person.name }}
+        </td>
+        <td class="px-6 py-4">
+          {{ person.birth_year }}
+        </td>
+        <td class="px-6 py-4">
+          {{ person.homeworld_name }}
+        </td>
+        <td class="px-6 py-4">
+          {{ person.homeworld_terrain }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="my-5 gap-5 flex float-end">
+    <button
+      class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+      (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+      (click)="nextPage()" [disabled]="currentPage >= totalRecords / 10">Next</button>
+  </div>
+</div>
+  <!--No search result-->
+  <div *ngIf="people.length === 0 && searching" class="text-center flex justify-center items-center">
+    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <a href="#">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">No Result Found</h5>
+      </a>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Click here to return.</p>
+      <a href="#"
+        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+       To Character Overview
+        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+          viewBox="0 0 14 10">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M1 5h12m0 0L9 1m4 4L9 9" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
