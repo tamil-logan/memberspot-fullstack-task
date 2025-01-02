@@ -2,28 +2,27 @@
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+Thank you for the opportunity to complete the challenge. I look forward to discussing it further and incorporating your inputs and feedback to take it to the next level.  
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
-
-## Finish your remote caching setup
-
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/73yD5dgWDB)
-
+To run the application, please follow the steps outlined below:
 
 ## Run tasks
 
-To run the dev server for your app, use:
+To run the frontend dev server for your app, use:
 
 ```sh
 npx nx serve frontend
 ```
 
-To create a production bundle:
+listening on port 4200
+
+To run the backend dev server for your app, use:
 
 ```sh
-npx nx build frontend
+npx nx serve backend
 ```
+
+listening on port 3000
 
 To see all available targets to run for a project, run:
 
@@ -45,6 +44,10 @@ To generate a new application, use:
 
 ```sh
 npx nx g @nx/angular:app demo
+```
+
+```sh
+npx nx g @nx/nest:app demo
 ```
 
 To generate a new library, use:
