@@ -13,7 +13,6 @@ export class PeopleController {
 
   @Get('search')
   async getPerson(@Query('searchTerm') searchTerm: string) {
-    console.log(searchTerm)
     return await this.peopleService.fetchPerson(searchTerm);
   }
 

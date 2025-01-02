@@ -62,7 +62,6 @@ export class PeopleListComponent implements OnInit {
     this.searching = true
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     this.peopleService.fetchPerson(val).subscribe((data: any) => {
-      console.log('i am', data)
        this.people = data.results;
        this.totalRecords = data.total_records;
      });
