@@ -8,6 +8,12 @@ To run the application, please follow the steps outlined below:
 
 ## Run tasks
 
+run the following command to install the dependencies#
+
+```sh
+npm install
+```
+
 To run the frontend dev server for your app, use:
 
 ```sh
