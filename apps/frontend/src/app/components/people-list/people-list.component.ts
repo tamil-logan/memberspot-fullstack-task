@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PeopleService } from '../people.service';
+import { PersonAPIResponse } from '@memberspot-fullstack-task/shared';
 
 
 @Component({
@@ -23,23 +24,11 @@ export class PeopleListComponent implements OnInit {
    }
 
    loadPeople() {
-     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-     this.peopleService.fetchPeople(this.currentPage).subscribe((data: any) => {
-      console.log(data)
+     this.peopleService.fetchPeople(this.currentPage).subscribe((data: PersonAPIResponse) => {
        this.people = data.results;
        this.totalRecords = data.total_records;
      });
    }
-
-
-   getPerson(searchTerm: string) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    this.peopleService.fetchPerson(searchTerm).subscribe((data: any) => {
-     console.log(data)
-      this.people = data.results;
-      this.totalRecords = data.total_records;
-    });
-  }
 
    nextPage() {
      if (this.currentPage < Math.ceil(this.totalRecords / 10)) {
@@ -60,8 +49,7 @@ export class PeopleListComponent implements OnInit {
       return;
     }
     this.searching = true
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    this.peopleService.fetchPerson(val).subscribe((data: any) => {
+    this.peopleService.fetchPerson(val).subscribe((data: PersonAPIResponse) => {
        this.people = data.results;
        this.totalRecords = data.total_records;
      });

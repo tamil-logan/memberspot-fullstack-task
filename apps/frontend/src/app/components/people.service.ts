@@ -16,8 +16,8 @@ export class PeopleService {
   }
 
 
-  fetchPerson(searchTerm: string): Observable<{ results: PersonDetail[] }> {
-    return this.http.get<{ results: PersonDetail[]; }>(`http://localhost:3000/people/search`, {
+  fetchPerson(searchTerm: string): Observable<{ results: PersonDetail[]; total_records: number }> {
+    return this.http.get<{ results: PersonDetail[]; total_records: number}>(`http://localhost:3000/people/search`, {
       params: { searchTerm: searchTerm },
     });
   }
